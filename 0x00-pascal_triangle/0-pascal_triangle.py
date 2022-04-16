@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Pascal Triangle """
 
-
 def pascal_triangle(number):
     """calculate pascal if number <= 0 return an empty list"""
     pascal_list = []
