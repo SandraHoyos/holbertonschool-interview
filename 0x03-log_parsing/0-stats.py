@@ -51,6 +51,7 @@ def print_statistics() -> None:
         if value != 0:
             print('{}: {}'.format(key, value))
 
+
 if __name__ == '__main__':
     try:
         for i, line in enumerate(sys.stdin, 1):
