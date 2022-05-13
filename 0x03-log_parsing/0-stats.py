@@ -29,13 +29,13 @@ if __name__ == "__main__":
 
             try:
                 file_size += int(ln[-1])
-            except:
+            except Exception:
                 pass
 
             try:
                 if ln[-2] in status_code:
                     status_code[ln[-2]] += 1
-            except:
+            except Exception:
                 pass
 
         print_values(status_code, file_size)
@@ -43,4 +43,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print_values(status_code, file_size)
         raise
-    
