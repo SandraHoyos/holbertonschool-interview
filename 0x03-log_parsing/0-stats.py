@@ -1,45 +1,45 @@
 #!/usr/bin/python3
+"""Write a script that reads stdin line by line and computes metrics:
 """
-Script that reads stdin line by line and computes metrics:
-"""
 
-import sys
+if __name__ == '__main__':
+    import sys
 
+    def statistics(status_counts_dict, total_file_size):
+        """ prints statistics at that moment"""
+        print("File size: {:d}".format(total_file_size))
+        for code in sorted(status_counts_dict.keys()):
+            value = status_counts_dict[code]
+            if value != 0:
+                print("{}: {}".format(code, value))
 
-if __name__ == "__main__":
-
-    status_code = {"200": 0, "301": 0, "400": 0, "401": 0,
-                   "403": 0, "404": 0, "405": 0, "500": 0}
-    file_size = 0
-    total_lines = 0
-
-    def print_values(status_code, file_size):
-        print("File size: {:d}".format(file_size))
-        for key in sorted(status_code.keys()):
-            if status_code[key] != 0:
-                print("{}: {:d}".format(key, status_code[key]))
-
+    # initialize variables
+    status_codes = {"200": 0, "301": 0, "400": 0,
+                    "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
+    total_file_size = 0
+    count = 0
     try:
+        # catch input line
         for line in sys.stdin:
-            if total_lines != 0 and total_lines % 10 == 0:
-                print_values(status_code, file_size)
-
-            total_lines += 1
-            ln = line.split()
+            # count and split line
+            line = line.split()
+            count += 1
 
             try:
-                file_size += int(ln[-1])
+                status_code, file_size = line[-2], int(line[-1])
+                total_file_size += file_size
+
+                if status_code in status_codes:
+                    status_codes[status_code] += 1
+
             except Exception:
                 pass
 
-            try:
-                if ln[-2] in status_code:
-                    status_code[ln[-2]] += 1
-            except Exception:
-                pass
+            if count % 10 == 0:
+                statistics(status_codes, total_file_size)
 
-        print_values(status_code, file_size)
+        statistics(status_codes, total_file_size)
 
-    except KeyboardInterrupt:
-        print_values(status_code, file_size)
+    except (KeyboardInterrupt, SystemExit):
+        statistics(status_codes, total_file_size)
         raise
