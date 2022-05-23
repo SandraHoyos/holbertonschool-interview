@@ -46,16 +46,3 @@ N = sys.argv[1]
 
 try:
     N = int(N)
-except ValueError:
-    print("N must be a number")
-    sys.exit(1)
-
-if N < 4:
-    print("N must be at least 4")
-    sys.exit(1)
-
-queen = NQueen(N)
-result = queen.nQueen(1)
-
-for i in result:
-    print(i)
