@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 '''solving nqueens problem'''
 import sys
 
