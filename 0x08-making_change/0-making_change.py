@@ -2,7 +2,6 @@
 """
 Making Change Function with the few amount of coins
 """
-
 def makeChange(coins: list, total: int) -> int:
     """
     Given a pile of coins of different values, determine the fewest
