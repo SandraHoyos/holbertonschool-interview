@@ -1,8 +1,8 @@
 #!/usr/bin/python3
+
 """
 Making Change Function with the few amount of coins
 """
-
 
 def makeChange(coins: list, total: int) -> int:
     """
