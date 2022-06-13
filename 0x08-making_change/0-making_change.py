@@ -11,21 +11,17 @@ def makeChange(coins, total):
     Args:
     coins total
     """
-    if total <= 0:
+if total <= 0:
         return 0
 
+    change = 0
     coins.sort(reverse=True)
 
-    i, n_coins = (0, 0)
-    cpy_total = total
-    len_coins = len(coins)
-
-    while(i < len_coins and cpy_total > 0):
-        if (cpy_total - coins[i]) >= 0:
-            cpy_total -= coins[i]
-            n_coins += 1
-        else:
-            i += 1
-
-    check = cpy_total > 0 and n_coins > 0
-    return -1 if check or n_coins == 0 else n_coins
+    for coin in coins:
+        temp_change = int(total / coin)
+        total -= temp_change * coin
+        change += temp_change
+        if total == 0:
+            return change
+    if total != 0:
+        return -1
