@@ -1,17 +1,22 @@
 #!/usr/bin/python3
-
 """
-Determine the fewest number of coins needed to meet a given amount total.
+Making Change Function with the few amount of coins
 """
 
 
 def makeChange(coins: list, total: int) -> int:
-
     """
-    Args:
-    coins total
+    Given a pile of coins of different values, determine the fewest
+    number of coins needed to meet a given amount total.
+    Returns: fewest number of coins needed to meet total
+        - If total is 0 or < 0, return 0
+        - If total cannot be met by any number of coins you have, return -1
+        - Coins is a list of the values of the coins
+        - The value of a coin will always be an integer greater than 0
+        - You can assume you have an infinite number of each denomination
+        of coin in the list
     """
-if total <= 0:
+    if total <= 0:
         return 0
 
     change = 0
@@ -25,3 +30,4 @@ if total <= 0:
             return change
     if total != 0:
         return -1
+
